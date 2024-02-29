@@ -11,10 +11,44 @@ namespace ReverseMarkdown.Converters
         {
             Converter.Register("tr", this);
         }
-
         public override string Convert(HtmlNode node)
         {
-            var content = TreatChildren(node).TrimEnd();
+            return string.Empty;
+        }
+        public override string Convert(HtmlNode node, Dictionary<string, object> context)
+        {
+            TableInfo ti = context["table"] as TableInfo;
+            int rowIndex = (int)context["rowIndex"];
+            RowInfo ri = new RowInfo();            
+            string content = string.Empty;
+            int colIndex = 0;
+            foreach (var n in node.ChildNodes)
+            {  
+                var result = Treat(n);
+                if (n.Name == "th" || n.Name == "td")
+                {
+                    var tdInfo = ColInfo.Parse(n);
+                    foreach (var rIndex in ti.Rows.Keys)
+                    {
+                        var r = ti.Rows[rIndex];
+                        if (r.Cols.TryGetValue(colIndex,out var c))
+                        {
+                            colIndex += c.ColSpan-1;
+                            content += c.Content;
+                        }
+                    } 
+                    if (tdInfo.RowSpan > 1)
+                    {
+                        tdInfo.Content = result;
+                        ri.Cols.Add(colIndex, tdInfo);
+                    }
+                    colIndex += tdInfo.ColSpan;
+                }
+                content += result;
+            }
+            if(ri.Cols.Count>0)
+                ti.Rows.Add(rowIndex, ri);
+            content = content.TrimEnd();
             var underline = "";
 
             if (string.IsNullOrWhiteSpace(content))
@@ -63,24 +97,30 @@ namespace ReverseMarkdown.Converters
             var nodes = node.ChildNodes.Where(x => x.Name == "th" || x.Name == "td").ToList();
 
             var cols = new List<string>();
-            foreach (var styles in nodes.Select(nd => StringUtils.ParseStyle(nd.GetAttributeValue("style", ""))))
+            foreach (var nd in nodes)
             {
+                var tdInfo = ColInfo.Parse(nd);
+                var styles = StringUtils.ParseStyle(nd.GetAttributeValue("style", ""));
                 styles.TryGetValue("text-align", out var align);
-
+                string line = "---";
                 switch (align?.Trim())
                 {
                     case "left":
-                        cols.Add(":---");
+                        line = ":---";
                         break;
                     case "right":
-                        cols.Add("---:");
+                        line = "---:";
                         break;
                     case "center":
-                        cols.Add(":---:");
+                        line = ":---:";
                         break;
                     default:
-                        cols.Add("---");
+                        line = "---";
                         break;
+                }
+                for (int i = 0; i < tdInfo.ColSpan; i++)
+                {
+                    cols.Add(line);
                 }
             }
 
@@ -88,5 +128,7 @@ namespace ReverseMarkdown.Converters
 
             return $"{indent}| {colsAggregated} |{Environment.NewLine}";
         }
+
+
     }
 }

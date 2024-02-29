@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
 
@@ -13,19 +14,19 @@ namespace ReverseMarkdown.Converters
 
         protected Converter Converter { get; }
 
-        protected string TreatChildren(HtmlNode node)
+        protected string TreatChildren(HtmlNode node,Dictionary<string,object> context=null)
         {
             var result = string.Empty;
 
             return !node.HasChildNodes
                 ? result
-                : node.ChildNodes.Aggregate(result, (current, nd) => current + Treat(nd));
+                : node.ChildNodes.Aggregate(result, (current, nd) => current + Treat(nd,context));
         }
 
-        private string Treat(HtmlNode node) {
+        protected string Treat(HtmlNode node,Dictionary<string,object> context=null) {
             //TrimNewLine(node);
             var converter = Converter.Lookup(node.Name);
-            return converter.Convert(node);
+            return converter.Convert(node,context);
         }
 
         private static void TrimNewLine(HtmlNode node)
@@ -69,6 +70,11 @@ namespace ReverseMarkdown.Converters
             }
 
             return new string(' ', length*4);
+        }
+
+        public virtual string Convert(HtmlNode node, Dictionary<string, object> context)
+        {
+            return Convert(node);
         }
 
         public abstract string Convert(HtmlNode node);

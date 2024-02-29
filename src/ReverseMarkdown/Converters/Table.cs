@@ -21,8 +21,21 @@ namespace ReverseMarkdown.Converters
             var emptyHeaderRow = HasNoTableHeaderRow(node) && useEmptyRowForHeader
                 ? EmptyHeader(node)
                 : string.Empty;
+            string content = string.Empty;
+            TableInfo ti = new TableInfo();
+            Dictionary<string, object> context = new Dictionary<string, object> {
+                { "table",ti}
+            };
+            int rowIndex = 0;
+            foreach (var n in node.ChildNodes)
+            {
+                context["rowIndex"]= rowIndex;
+                var result = Treat(n, context);
+                content += result;
+                rowIndex++;
+            }
 
-            return $"{Environment.NewLine}{Environment.NewLine}{emptyHeaderRow}{TreatChildren(node)}{Environment.NewLine}";
+            return $"{Environment.NewLine}{Environment.NewLine}{emptyHeaderRow}{content}{Environment.NewLine}";
         }
 
         private static bool HasNoTableHeaderRow(HtmlNode node)
@@ -39,13 +52,22 @@ namespace ReverseMarkdown.Converters
             {
                 return string.Empty;
             }
-
-            var colCount = firstRow.ChildNodes.Count(n => n.Name.Contains("td"));
+            int colCount = 0;
+            foreach (var childNode in firstRow.ChildNodes)
+            {
+                if (childNode.Name.Contains("td"))
+                {
+                    var colspan = childNode.GetAttributeValue("colspan", "1");
+                    if (!int.TryParse(colspan, out var span))
+                        span = 1;
+                    colCount += span;
+                }
+            }
 
             var headerRowItems = new List<string>();
             var underlineRowItems = new List<string>();
 
-            for (var i = 0; i < colCount; i++ )
+            for (var i = 0; i < colCount; i++)
             {
                 headerRowItems.Add("<!---->");
                 underlineRowItems.Add("---");

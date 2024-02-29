@@ -8,7 +8,7 @@ namespace ReverseMarkdown.Converters
     {
         public Td(Converter converter) : base(converter)
         {
-            var elements = new [] { "td", "th" };
+            var elements = new[] { "td", "th" };
 
             foreach (var element in elements)
             {
@@ -21,8 +21,15 @@ namespace ReverseMarkdown.Converters
             var content = TreatChildren(node)
                 .Chomp()
                 .Replace(Environment.NewLine, "<br>");
-
-            return $" {content} |";
+            var colspan = node.GetAttributeValue("colspan", "1");
+            if (!int.TryParse(colspan, out var span))
+                span = 1;
+            string s = string.Empty;
+            for (int i = 0; i < span; i++)
+            {
+                s += $" {content} |";
+            }
+            return s;
         }
 
         /// <summary>
@@ -30,10 +37,12 @@ namespace ReverseMarkdown.Converters
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public static bool FirstNodeWithinCell(HtmlNode node) {
+        public static bool FirstNodeWithinCell(HtmlNode node)
+        {
             var parentName = node.ParentNode.Name;
             // If p is at the start of a table cell, no leading newline
-            if (parentName == "td" || parentName == "th") {
+            if (parentName == "td" || parentName == "th")
+            {
                 var pNodeIndex = node.ParentNode.ChildNodes.GetNodeIndex(node);
                 var firstNodeIsWhitespace = node.ParentNode.FirstChild.Name == "#text" && Regex.IsMatch(node.ParentNode.FirstChild.InnerText, @"^\s*$");
                 if (pNodeIndex == 0 || (firstNodeIsWhitespace && pNodeIndex == 1)) return true;
@@ -45,9 +54,11 @@ namespace ReverseMarkdown.Converters
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public static bool LastNodeWithinCell(HtmlNode node) {
+        public static bool LastNodeWithinCell(HtmlNode node)
+        {
             var parentName = node.ParentNode.Name;
-            if (parentName == "td" || parentName == "th") {
+            if (parentName == "td" || parentName == "th")
+            {
                 var pNodeIndex = node.ParentNode.ChildNodes.GetNodeIndex(node);
                 var cellNodeCount = node.ParentNode.ChildNodes.Count;
                 var lastNodeIsWhitespace = node.ParentNode.LastChild.Name == "#text" && Regex.IsMatch(node.ParentNode.LastChild.InnerText, @"^\s*$");
