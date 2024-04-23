@@ -19,7 +19,12 @@ namespace ReverseMarkdown.Test
             _verifySettings = new VerifySettings();
             _verifySettings.DisableRequireUniquePrefix();
         }
-
+        [Fact]
+        public Task A_TdSpanTest()
+        {
+            var html = "<body><div><p dir=\"ltr\" class=\"pt-Normal\"><span xml:space=\"preserve\" class=\"pt-000000\"> </span></p><h1 dir=\"ltr\" class=\"pt-000001\"><span class=\"pt-000002\">1</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont\">链接</span></h1><p dir=\"ltr\" class=\"pt-Normal\"><a href=\"https://learn.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting?view=aspnetcore-8.0\"><span class=\"pt-Hyperlink\">URL Rewriting Middleware in ASP.NET Core | Microsoft Learn</span></a></p><h1 dir=\"ltr\" class=\"pt-000001\"><span class=\"pt-000002\">2</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont\">图片</span></h1><p dir=\"ltr\" class=\"pt-Normal\"><span class=\"pt-DefaultParagraphFont-000003\"><img src=\"/embed/memory/ad6c848f-eb37-43f7-a6b8-190d0ea43e36/af349fd890c6464da5491b78ec5e2d28.png\" style=\"width: 6.5in; height: 3.0465279in\" alt=\"Picture 1\" /></span></p><h1 dir=\"ltr\" class=\"pt-000001\"><span class=\"pt-000002\">3</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont\">列表</span></h1><h2 dir=\"ltr\" class=\"pt-000004\"><span class=\"pt-000005\">3.1</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000006\">列表1</span></h2><p dir=\"ltr\" class=\"pt-000007\"><span class=\"pt-000008\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">知識檢索的精準度受原始資料的影響</span></p><p dir=\"ltr\" class=\"pt-000010\"><span class=\"pt-000011\">o</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">對於文檔類知識一般需要做很多自動清洗和人工調整</span></p><p dir=\"ltr\" class=\"pt-000010\"><span class=\"pt-000011\">o</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔内容的切片，一般需要考慮文檔的結構，根據章節表格、列表進行切割</span></p><p dir=\"ltr\" class=\"pt-000012\"><span class=\"pt-000013\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔除文字内容外，圖片也是很關鍵的信息，有時候圖片比文字更容易解釋問題</span></p><p dir=\"ltr\" class=\"pt-000012\"><span class=\"pt-000013\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔中的表格需要保留保留表格結構才可以讓AI做更好的解讀和加工</span></p><p dir=\"ltr\" class=\"pt-000007\"><span class=\"pt-000008\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔中的流程信息需要進行適當的組織才可以AI做更好的解讀的加工</span></p><p dir=\"ltr\" class=\"pt-000014\"><span class=\"pt-000008\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">視頻等多媒體文件的檢索結果應該是視頻文件本身</span></p><h2 dir=\"ltr\" class=\"pt-000004\"><span class=\"pt-000005\">3.2</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000006\">列表2</span></h2><p dir=\"ltr\" class=\"pt-000007\"><span class=\"pt-000015\">1)</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">知識檢索的精準度受原始資料的影響</span></p><p dir=\"ltr\" class=\"pt-000010\"><span class=\"pt-000011\">o</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">對於文檔類知識一般需要做很多自動清洗和人工調整</span></p><p dir=\"ltr\" class=\"pt-000010\"><span class=\"pt-000011\">o</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔内容的切片，一般需要考慮文檔的結構，根據章節表格、列表進行切割</span></p><p dir=\"ltr\" class=\"pt-000012\"><span class=\"pt-000013\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔除文字内容外，圖片也是很關鍵的信息，有時候圖片比文字更容易解釋問題</span></p><p dir=\"ltr\" class=\"pt-000012\"><span class=\"pt-000013\"></span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔中的表格需要保留保留表格結構才可以讓AI做更好的解讀和加工</span></p><p dir=\"ltr\" class=\"pt-000007\"><span class=\"pt-000015\">2)</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">文檔中的流程信息需要進行適當的組織才可以AI做更好的解讀的加工</span></p><p dir=\"ltr\" class=\"pt-000014\"><span class=\"pt-000015\">3)</span><span lang=\"zh-TW\" class=\"pt-DefaultParagraphFont-000009\">視頻等多媒體文件的檢索結果應該是視頻文件本身</span></p><p dir=\"ltr\" class=\"pt-Normal\"><span xml:space=\"preserve\" class=\"pt-000000\"> </span></p><h1 dir=\"ltr\" class=\"pt-000001\"><span class=\"pt-000002\">4</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont\">表格</span></h1><h2 dir=\"ltr\" class=\"pt-000004\"><span class=\"pt-000005\">4.1</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000006\">简单表格</span></h2><div align=\"left\"><table dir=\"ltr\" class=\"pt-000016\"><tr><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">1</span></p></td><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">A</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000009\">一</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">One</span></p></td></tr><tr><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">2</span></p></td><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">B</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000009\">二</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">T</span><span class=\"pt-DefaultParagraphFont-000009\">wo</span></p></td></tr><tr><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">3</span></p></td><td class=\"pt-000017\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">C</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000009\">仨</span></p></td><td class=\"pt-000019\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">Three</span></p></td></tr></table></div><p dir=\"ltr\" class=\"pt-Normal\"><span xml:space=\"preserve\" class=\"pt-000000\"> </span></p><h2 dir=\"ltr\" class=\"pt-000004\"><span class=\"pt-000005\">4.2</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000006\">合并行</span></h2><div align=\"left\"><table dir=\"ltr\" class=\"pt-000016\"><tr><td class=\"pt-000020\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Lorem ipsum dolor sit amet</span></p></td><td class=\"pt-000022\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Consectetuer adipiscing elit</span></p></td><td class=\"pt-000023\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Maecenas porttitor congue massa.</span></p></td></tr><tr><td rowspan=\"2\" class=\"pt-000024\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000025\">100</span></p><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000025\">400</span></p></td><td class=\"pt-000026\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">200</span></p></td><td class=\"pt-000027\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">300</span></p></td></tr><tr><td class=\"pt-000028\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">500</span></p></td><td class=\"pt-000028\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">600</span></p></td></tr></table></div><p dir=\"ltr\" class=\"pt-Normal\"><span xml:space=\"preserve\" class=\"pt-000000\"> </span></p><h2 dir=\"ltr\" class=\"pt-000004\"><span class=\"pt-000005\">4.3</span><span lang=\"zh-CN\" class=\"pt-DefaultParagraphFont-000006\">合并列</span></h2><div align=\"left\"><table dir=\"ltr\" class=\"pt-000016\"><tr><td class=\"pt-000020\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Lorem ipsum dolor sit amet</span></p></td><td class=\"pt-000022\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Consectetuer adipiscing elit</span></p></td><td class=\"pt-000023\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000021\">Maecenas porttitor congue massa.</span></p></td></tr><tr><td colspan=\"2\" class=\"pt-000029\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000025\">100</span></p><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000025\">200</span></p></td><td class=\"pt-000027\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">300</span></p></td></tr><tr><td class=\"pt-000030\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000025\">400</span></p></td><td class=\"pt-000028\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">500</span></p></td><td class=\"pt-000028\"><p dir=\"ltr\" class=\"pt-Normal-000018\"><span class=\"pt-DefaultParagraphFont-000009\">600</span></p></td></tr></table></div><p dir=\"ltr\" class=\"pt-Normal\"><span xml:space=\"preserve\" class=\"pt-000000\"> </span></p></div></body>";
+            return CheckConversion(html);
+        }
         [Fact]
         public Task WhenThereIsAsideTag()
         {
@@ -56,7 +61,7 @@ namespace ReverseMarkdown.Test
                 @"Leave <a href=""http://example.com"">http</a>, <a href=""https://example.com"">https</a>, <a href=""ftp://example.com"">ftp</a>, <a href=""ftps://example.com"">ftps</a>, <a href=""file://example.com"">file</a>. Remove <a href=""data:text/plain;charset=UTF-8;page=21,the%20data:1234,5678"">data</a>, <a href=""tel://example.com"">tel</a> and <a href=""whatever://example.com"">whatever</a>";
             return CheckConversion(html, new Config
             {
-                WhitelistUriSchemes = new[] {"http", "https", "ftp", "ftps", "file"}
+                WhitelistUriSchemes = new[] { "http", "https", "ftp", "ftps", "file" }
             });
         }
 
@@ -67,7 +72,7 @@ namespace ReverseMarkdown.Test
                 html: @"<a href=""example.com"">yeah</a>",
                 config: new Config
                 {
-                    WhitelistUriSchemes = new[] {""}
+                    WhitelistUriSchemes = new[] { "" }
                 }
             );
         }
@@ -79,7 +84,7 @@ namespace ReverseMarkdown.Test
                 html: @"<a href=""example.com"">yeah</a>",
                 config: new Config
                 {
-                    WhitelistUriSchemes = new[] {"whatever"}
+                    WhitelistUriSchemes = new[] { "whatever" }
                 }
             );
         }
@@ -431,7 +436,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""data:image/gif;base64,R0lGODlhEAAQ...""/>",
                 config: new Config
                 {
-                    WhitelistUriSchemes = new[] {"http"}
+                    WhitelistUriSchemes = new[] { "http" }
                 }
             );
         }
@@ -443,7 +448,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""data:image/gif;base64,R0lGODlhEAAQ...""/>",
                 config: new Config()
                 {
-                    WhitelistUriSchemes = new[] {"data"}
+                    WhitelistUriSchemes = new[] { "data" }
                 }
             );
         }
@@ -455,7 +460,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""example.com""/>",
                 config: new Config()
                 {
-                    WhitelistUriSchemes = new[] {""}
+                    WhitelistUriSchemes = new[] { "" }
                 }
             );
         }
@@ -467,7 +472,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""data:image/gif;base64,R0lGODlhEAAQ...""/>",
                 config: new Config()
                 {
-                    WhitelistUriSchemes = new[] {"whatever"}
+                    WhitelistUriSchemes = new[] { "whatever" }
                 }
             );
         }
@@ -479,7 +484,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""/example.gif""/>",
                 config: new Config()
                 {
-                    WhitelistUriSchemes = new[] {"data"}
+                    WhitelistUriSchemes = new[] { "data" }
                 }
             );
         }
@@ -491,7 +496,7 @@ namespace ReverseMarkdown.Test
                 html: @"<img src=""/example.gif""/>",
                 config: new Config()
                 {
-                    WhitelistUriSchemes = new[] {"file"}
+                    WhitelistUriSchemes = new[] { "file" }
                 }
             );
         }
@@ -502,7 +507,7 @@ namespace ReverseMarkdown.Test
             var html = @"<img src=""//example.gif""/>";
             var config = new Config
             {
-                WhitelistUriSchemes = new[] {"http"}
+                WhitelistUriSchemes = new[] { "http" }
             };
             return CheckConversion(html, config);
         }
@@ -525,7 +530,7 @@ namespace ReverseMarkdown.Test
         public Task WhenThereIsEmptyPreTag_ThenConvertToMarkdownPre_GFM()
         {
             var html = "This text has pre tag content <pre><br/ ></pre>Next line of text";
-            return CheckConversion(html, new Config {GithubFlavored = true});
+            return CheckConversion(html, new Config { GithubFlavored = true });
         }
 
         [Fact]
@@ -539,7 +544,7 @@ namespace ReverseMarkdown.Test
         public Task WhenThereIsUnorderedListAndBulletIsAsterisk_ThenConvertToMarkdownList()
         {
             var html = "This text has unordered list.<ul><li>Item1</li><li>Item2</li></ul>";
-            return CheckConversion(html, new Config {ListBulletChar = '*'});
+            return CheckConversion(html, new Config { ListBulletChar = '*' });
         }
 
         [Fact]
@@ -920,7 +925,7 @@ namespace ReverseMarkdown.Test
 
         static Task CheckConversion(string html, Config config = null)
         {
-            config = config ?? new Config();
+            config = config ?? new Config() { GithubFlavored=true};
             var converter = new Converter(config);
             var result = converter.Convert(html);
             var settings = new VerifySettings();
@@ -1127,7 +1132,7 @@ namespace ReverseMarkdown.Test
                 @"This text has image <img alt=""alt"" src=""http://test.com/images/test.png"">. Next line of text";
             var config = new Config
             {
-                PassThroughTags = new[] {"img"}
+                PassThroughTags = new[] { "img" }
             };
             return CheckConversion(html, config);
         }
@@ -1305,7 +1310,7 @@ namespace ReverseMarkdown.Test
 
             return CheckConversion(html);
         }
-        
+
         [Fact]
         public Task WhenTableHeadingWithAlignmentStyles_ThenTableHeaderShouldHaveProperAlignment()
         {
@@ -1334,7 +1339,7 @@ namespace ReverseMarkdown.Test
             var html = $"This is the 1<s>st</s> sentence to t<del>e<strike>s</strike></strike>t the strikethrough tag conversion";
             return CheckConversion(html);
         }
-        
+
         [Fact]
         public Task When_Spaces_In_Inline_Tags_Should_Be_Retained()
         {
