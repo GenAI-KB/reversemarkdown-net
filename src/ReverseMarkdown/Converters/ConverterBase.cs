@@ -74,7 +74,7 @@ namespace ReverseMarkdown.Converters
 
         public virtual string Convert(HtmlNode node, Dictionary<string, object> context)
         {
-            return Convert(node,context);
+            return Convert(node);
         }
 
         public abstract string Convert(HtmlNode node);
